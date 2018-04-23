@@ -18,7 +18,7 @@ public class Dialog {
 		//d.getContentPane().add(new JLabel(errorDescription));
 		//d.add(new JButton("Dismiss"));
 		
-	    //d.setLocationRelativeTo(pos);
+	    d.setLocationRelativeTo(null);
 	    d.setVisible(true);
 	}
 	

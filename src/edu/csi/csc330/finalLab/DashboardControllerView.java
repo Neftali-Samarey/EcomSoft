@@ -15,24 +15,34 @@ import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
 
 import edu.csi.csc330.classes.utilities.ItemDialog;
+import edu.csi.csc330.classes.views.AddItemController;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 
+
+
 public class DashboardControllerView extends JFrame {
+	
+	
+	// temporary array of all the products
+	
+	
+	
 	
 	String[] columnNames = {"First Name",
             "Last Name",
             "Sport",
             "# of Years",
-            "Vegetarian"};
+            "Vegetarian" };
 
 	private JPanel contentPane;
 	JPanel dashboard = new JPanel();
 	JPanel connectionLight = new JPanel();
 	private final JButton btnNewItem = new JButton("New Item");
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -106,11 +116,21 @@ public class DashboardControllerView extends JFrame {
 		btnNewItem.addActionListener(new ActionListener()
 		{
 		  public void actionPerformed(ActionEvent e){
-			// Call the new item
-			  ItemDialog newItem = new ItemDialog("New Item");
+
+			//  ItemDialog newItem = new ItemDialog("New Item");
+			  AddItemController itemControllerView = new AddItemController();
+			  itemControllerView.setVisible(true);
+			  itemControllerView.setLocationRelativeTo(null);
 		  }
 		});
 		dashboard.add(btnNewItem);
+		
+		table = new JTable();
+		sl_overlayPanel.putConstraint(SpringLayout.NORTH, table, 32, SpringLayout.SOUTH, btnNewItem);
+		sl_overlayPanel.putConstraint(SpringLayout.WEST, table, 37, SpringLayout.WEST, dashboard);
+		sl_overlayPanel.putConstraint(SpringLayout.SOUTH, table, -23, SpringLayout.SOUTH, dashboard);
+		sl_overlayPanel.putConstraint(SpringLayout.EAST, table, -48, SpringLayout.EAST, dashboard);
+		dashboard.add(table);
 		
 		this.enableTable();
 		

@@ -17,6 +17,7 @@ public class ItemDialog extends Dialog {
 		
 		super(dialogTypeString);
 		
+	
 		SpringLayout sl_overlayPanel = new SpringLayout();
 		// TODO Auto-generated constructor stub
 		JTextField field = new JTextField();
