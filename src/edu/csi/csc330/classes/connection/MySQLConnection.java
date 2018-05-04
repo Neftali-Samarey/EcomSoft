@@ -8,7 +8,7 @@ public class MySQLConnection {
 		
 		try {
 			   //connection to database
-			   Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:8888/EcomsoftDatabase", "root", "root");
+			   Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:8889/Demo", "root", "root");
 			   
 			   //create statement 
 			   Statement myStmt = myConn.createStatement();

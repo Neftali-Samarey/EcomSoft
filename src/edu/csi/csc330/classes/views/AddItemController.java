@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import edu.csi.csc330.classes.Item;
+import edu.csi.csc330.finalLab.DashboardControllerView;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -27,8 +28,14 @@ public class AddItemController extends JFrame {
 	private JTextField productSKUField;
 	private JTextField productPriceField;
 	private JTextField productQtyField;
+	JCheckBox chckbxAvailable = new JCheckBox("Available");
 	//private Item item = new Item();
 	private Item itemObject;
+	
+	
+	//DashboardControllerView parent; 
+	DashboardControllerView parent; // Initial ref
+	
 
 	/**
 	 * Launch the application.
@@ -99,19 +106,24 @@ public class AddItemController extends JFrame {
 		productPriceField.setBounds(6, 236, 143, 37);
 		contentPane.add(productPriceField);
 		
-		JButton btnAddItem = new JButton("Save");
+		JButton btnAddItem = new JButton("Add Item");
 		btnAddItem.setBounds(217, 359, 117, 29);
 		btnAddItem.addActionListener(new ActionListener()
 		{
 		  public void actionPerformed(ActionEvent e){
 
-			  itemObject.setItemName(productNameField.getText());
-			  itemObject.setItemPrice(productPriceField.getText());
+//			  itemObject.setItemName(productNameField.getText());
+//			  itemObject.setItemPrice(productPriceField.getText());
 			  
 			  System.out.println("Added Item with " + itemObject.getProductDetails());
-			  
+			  parent.addItem(productNameField.getText(), productSKUField.getText() ,productPriceField.getText(), chckbxAvailable.isSelected());
+			 // AddItemController.this.parent.doneWithView();
+			  AddItemController.this.dispose();
 		  }
 		});
+		
+		
+		
 		contentPane.add(btnAddItem);
 		
 		JLabel label_2 = new JLabel("Quanity");
@@ -119,7 +131,7 @@ public class AddItemController extends JFrame {
 		label_2.setBounds(175, 209, 123, 16);
 		contentPane.add(label_2);
 		
-		JCheckBox chckbxAvailable = new JCheckBox("Available");
+		
 		chckbxAvailable.setBounds(416, 242, 128, 23);
 		contentPane.add(chckbxAvailable);
 		
@@ -136,10 +148,13 @@ public class AddItemController extends JFrame {
 	}
 	
 	
-	// Addiontal methods
-	public boolean didDeleteItemFromRow () {
-		String itemDeleted = "indexItem";
-		return true;
-	}
+	/* Constuctor holds reference to the Dashboard controller */
+//	public AddItemController(DashboardControllerView parentController) {
+//		
+//		super("Second Window");
+//		this.parent = parentController;
+//		System.out.println("Recieved a class");
+//	}
+
 	
 }

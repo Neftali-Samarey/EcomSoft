@@ -7,9 +7,9 @@ public class Item {
 	private String itemImagePath;
 	private String itemName;
 	private String itemSKU;
-	private double itemPrice;
+	private String itemPrice;
 	private int quantity;
-	private boolean outOfStock;
+	private boolean inStock;
 	
 	
 	public Item() {
@@ -19,7 +19,7 @@ public class Item {
 	}
 	
 	// Constructor
-	public Item(String productName, String productSku, double productPrice, int productQty) {
+	public Item(String productName, String productSku, String productPrice, int productQty) {
 		
 		// Handle empty fields
 		if (productName == null) {
@@ -50,11 +50,20 @@ public class Item {
 		}
 	}
 	
-	public void setItemPrice(String productPrice) {
-		//String fomrattedString = formatInputItemCost(productPrice);
-		double finalres = Double.parseDouble(productPrice);
-		this.itemPrice = finalres;
+	public void setItemParametersWith(String productName, String productSku, String productPrice, boolean stock) {
+		this.itemName = productName;
+		this.itemSKU = productSku;
+		this.itemPrice = productPrice;
+		this.inStock = stock;
 	}
+	
+	
+	
+//	public void setItemPrice(String productPrice) {
+//		//String fomrattedString = formatInputItemCost(productPrice);
+//		double finalres = Double.parseDouble(productPrice);
+//		this.itemPrice = finalres;
+//	}
 	
 	
 	// getters (testing)
@@ -63,9 +72,29 @@ public class Item {
 		return itemData;
 	}
 	
+	public String getItemName() {
+		return this.itemName;
+	}
+	
+	public String getItemSKU() {
+		return itemSKU;
+	}
+	
+	public String getItemPrice() {
+		return itemPrice;
+	}
+	
+	public Boolean isAvailable() {
+		if (inStock) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	// Format the input double string
 	private String formatInputItemCost(String inputMoney) {
+		
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
 		String conversion = formatter.format(inputMoney);
 		return conversion;

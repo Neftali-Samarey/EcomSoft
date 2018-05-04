@@ -22,8 +22,6 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent; 
 
-
-
 public class MainInterface extends JFrame {
 
 	private JPanel contentPane;
@@ -80,11 +78,9 @@ public class MainInterface extends JFrame {
 		Panel panel = new Panel();
 		panel.setBackground(SystemColor.controlHighlight);
 		panel.setPreferredSize(new Dimension(400, 250));
-		
-		
-		// Set another view on the panel (Image)
-		panel.setLayout(new FlowLayout()); 
+		panel.setLayout(null);
 		ImagePanel imageview = new ImagePanel();
+		imageview.setBounds(173, 61, 450, 130);
 		FlowLayout flowLayout = (FlowLayout) imageview.getLayout();
 		imageview.setPreferredSize(new Dimension(450, 130));
 		imageview.setOpaque(false); 
@@ -120,7 +116,7 @@ public class MainInterface extends JFrame {
 		
 		JLabel passwordLabel = new JLabel("Password");
 		sl_overlayPanel.putConstraint(SpringLayout.WEST, passwordLabel, 0, SpringLayout.WEST, usernameLabel);
-		JTextField passwordField = new JTextField(20);
+		JPasswordField passwordField = new JPasswordField(20);
 		sl_overlayPanel.putConstraint(SpringLayout.NORTH, passwordField, 8, SpringLayout.SOUTH, usernameField);
 		sl_overlayPanel.putConstraint(SpringLayout.WEST, passwordField, 24, SpringLayout.EAST, passwordLabel);
 		sl_overlayPanel.putConstraint(SpringLayout.EAST, passwordField, -238, SpringLayout.EAST, overlayPanel);
@@ -171,15 +167,13 @@ public class MainInterface extends JFrame {
 	}
 	
 	
-	
-	
-	
+	/* Needs access to a database for credential login */
 	
 	public void login(String username, String password) {
 		
 		// Temp login credentials for now
-		String usr = "1";
-		String pw = "1";
+		final String usr = "Anthony";
+		final String pw = "csc330";
 		
 		this.username = username;
 		this.password = password;
@@ -188,8 +182,7 @@ public class MainInterface extends JFrame {
 			// Access granted
 			System.out.println("ACCESS GRANTED: Recieved both username with: " + username + "and password with " + password );
 			this.didCallMainInterface();
-			
-			//System.exit(0); 
+			MainInterface.this.dispose(); 
 		} else  {
 			System.out.print("Please check your login credentials");
 			this.alertMessage("Login Error", "Please check login credentials and try again");
